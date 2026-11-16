@@ -88,3 +88,13 @@ Why the eight standard grammars lost:
 | 7 Tear-off | bespoke signature on a flow section | flow, holds | The page stops moving and starts responding |
 
 Checks: 5 device families (parallax, pan, pin, flow/in, reveal). No family twice in a row (4 flow, 5 reveal, 6 flow). Zero scrub. The peak has the largest span. No two adjacent acts share a feeling.
+
+## Revision 1 (2026-11-16, from Chad's review)
+
+Chad's words: the moving fence in the opening "looks like an ai generated fence. either get rid of it or make it permanant. I would like to see what a nice big white fence looks like." The farms "roll in from the right side of the screen, that should not happen." On the map, "you have to scroll for the entire map ... to be built ... Just have it show up when you scroll through to that page."
+
+Changes:
+- **Hero:** the layered plate (photo, mist, generated SVG fence, pointer parallax) is gone. One still photo of three horses at a white three-board fence (Pexels 9042971). Square crop on phones so the full fence shows.
+- **Farms:** the `pan` act is now a `flow` section with a fixed three-column grid (two on tablets, one on phones). Filters sit beside the heading; the sign-up is a strip under the grid. Filtering still reorders and dims.
+- **Map:** the `pin` act and the scroll-drawn plat are gone. The map renders whole on arrival, with one heading, one paragraph, and the area buttons. On phones the map sits between the paragraph and the buttons.
+- **Score now:** flow, flow, flow, flow, reveal (winter wipe), flow, flow plus the tear-off signature. The variety rule is relaxed by the client's direction; the page leans on content and the tear-off, not scroll effects. Page length dropped from 13.3 to 9.1 screens on desktop.

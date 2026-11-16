@@ -73,32 +73,21 @@
   .hero__row p { font-size: 1.2rem; line-height: 1.5; color: var(--sc-ink-soft); max-width: 44ch; }
   .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; }
   .plate { margin: clamp(2rem, 5vh, 3.25rem) 0 0; }
-  .plate__frame { position: relative; height: clamp(320px, 60vh, 660px); overflow: clip; outline: 1px solid var(--sc-ink); outline-offset: 6px; background: #c9b78f; }
-  .plate__far { position: absolute; inset: -6% 0 0 0; width: 100%; height: 112%; max-width: none; object-fit: cover; object-position: 50% 62%; transform-origin: 50% 60%; will-change: transform; }
-  .plate__mist { position: absolute; inset: -10% -15%; pointer-events: none; will-change: transform, opacity;
-    background:
-      radial-gradient(42% 22% at 26% 66%, rgba(255,244,222,.62), transparent 72%),
-      radial-gradient(38% 18% at 70% 70%, rgba(255,239,210,.48), transparent 72%),
-      radial-gradient(60% 16% at 50% 80%, rgba(255,248,235,.35), transparent 75%);
-    filter: blur(6px); mix-blend-mode: screen; }
-  .plate__mist i { position: absolute; inset: 0; background: inherit; animation: mist 22s ease-in-out infinite alternate; opacity: .55; }
-  @keyframes mist { from { transform: translateX(-3%); } to { transform: translateX(4%); } }
-  .plate__fence { position: absolute; left: -2%; right: -2%; bottom: -8%; width: 104%; height: 58%; max-width: none; will-change: transform; filter: blur(.6px); }
+  .plate__frame { position: relative; height: clamp(380px, 78vh, 820px); overflow: clip; outline: 1px solid var(--sc-ink); outline-offset: 6px; background: #8fb4d9; }
+  .plate__photo { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 50% 55%; }
   .plate figcaption { margin-top: 18px; font-size: .82rem; color: var(--sc-ink-soft); }
 
-  /* ---------------- 2. Lots: the pan rail ---------------- */
-  .lots-stage { padding-top: var(--mast); display: flex; align-items: center; background: var(--sc-canvas); }
-  .lots { position: relative; display: flex; align-items: stretch; gap: clamp(28px, 3vw, 44px); padding-inline: var(--sc-gutter); }
-  .lots > * { flex: none; }
-  .lots__lead { width: clamp(17rem, 27vw, 25rem); display: flex; flex-direction: column; justify-content: center; padding-right: 8px; }
-  .lots__lead h2 { font-size: clamp(2.4rem, 4vw, 3.6rem); line-height: 1; }
-  .lots__lead > p { margin-top: 14px; color: var(--sc-ink-soft); max-width: 34ch; }
-  .filters { margin-top: 26px; border-top: 1px solid var(--sc-ink); }
+  /* ---------------- 2. Lots: a fixed grid, one label schema ---------------- */
+  .lots-head { display: grid; grid-template-columns: 1fr minmax(18rem, 24rem); gap: 24px clamp(32px, 6vw, 88px); align-items: end; margin-bottom: clamp(2rem, 4vw, 3rem); }
+  .lots-head h2 { font-size: clamp(2.4rem, 4vw, 3.6rem); line-height: 1; }
+  .lots-head > div > p:not(.count) { margin-top: 14px; color: var(--sc-ink-soft); max-width: 46ch; font-size: 1.1rem; }
+  .lots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(36px, 4vw, 56px) clamp(24px, 3vw, 40px); }
+  .filters { border-top: 1px solid var(--sc-ink); }
   .filters label { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--rule); font-weight: 600; font-size: .95rem; min-height: 48px; }
   .filters select { font: inherit; font-weight: 600; border: 0; background: transparent; color: var(--sc-ink); padding: 6px 0; cursor: pointer; text-align: right; }
   .filters input[type="checkbox"] { width: 22px; height: 22px; accent-color: var(--sc-accent); cursor: pointer; }
   .count { margin-top: 12px; font-size: .9rem; color: var(--sc-ink-soft); }
-  .lot { width: clamp(16.5rem, 24vw, 22rem); display: flex; flex-direction: column; transition: opacity 240ms var(--sc-ease-out), filter 240ms var(--sc-ease-out); }
+  .lot { display: flex; flex-direction: column; transition: opacity 240ms var(--sc-ease-out), filter 240ms var(--sc-ease-out); }
   .lot.is-dim { opacity: .38; filter: grayscale(.8); }
   .lot img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; background: var(--sc-surface); }
   .lot__label { border-top: 2px solid var(--sc-ink); margin-top: 14px; padding-top: 10px; display: flex; flex-direction: column; flex: 1; }
@@ -114,10 +103,12 @@
   .lot__foot { margin-top: auto; padding-top: 12px; display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
   .price { font-family: var(--sc-font-display); font-weight: 700; font-size: 1.5rem; font-variant-numeric: lining-nums tabular-nums; }
   .ask { font-weight: 700; font-size: .9rem; color: var(--sc-accent); text-underline-offset: 4px; padding: 10px 0; }
-  .lots__end { width: clamp(16rem, 22vw, 20rem); display: flex; flex-direction: column; justify-content: center; border-left: 1px solid var(--sc-ink); padding-left: clamp(24px, 3vw, 40px); }
+  .lots__end { margin-top: clamp(3rem, 6vw, 4.5rem); border-top: 2px solid var(--sc-ink); padding-top: 28px; display: grid; grid-template-columns: 1fr minmax(18rem, 30rem); gap: 18px clamp(32px, 6vw, 88px); align-items: start; }
   .lots__end h3 { font-size: 1.6rem; }
   .lots__end p { margin-top: 10px; color: var(--sc-ink-soft); }
-  .signup { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+  .signup { display: flex; flex-wrap: wrap; gap: 10px; }
+  .signup input { flex: 1 1 14rem; width: auto; }
+  .signup .msg { flex-basis: 100%; }
   .msg { font-weight: 600; font-size: .92rem; margin-top: 10px; }
   .msg[hidden] { display: none; }
 
@@ -125,10 +116,8 @@
   input:focus-visible, textarea:focus-visible, .field select:focus-visible { outline: 2px solid var(--sc-accent); outline-offset: 1px; border-color: var(--sc-accent); }
 
   /* ---------------- 3. Plat: the peak ---------------- */
-  .plat-stage { padding-top: var(--mast); display: grid; grid-template-columns: minmax(18rem, 0.85fr) 1.15fr; align-items: center; gap: clamp(24px, 4vw, 64px); padding-inline: var(--sc-gutter); }
-  .plat-copy { position: relative; height: min(64vh, 560px); }
-  .plat-copy > * { position: absolute; left: 0; right: 0; top: 50%; translate: 0 -50%; }
-  .plat-quiet { font-family: var(--sc-font-display); font-style: italic; font-weight: 400; font-size: clamp(1.6rem, 2.6vw, 2.3rem); color: var(--sc-ink-soft); }
+  .plat-stage { display: grid; grid-template-columns: minmax(18rem, 0.85fr) 1.15fr; align-items: center; gap: clamp(24px, 4vw, 64px); }
+  .areas-title { margin: 28px 0 10px; font-size: 1.25rem; }
   .plat-copy h2 { font-size: clamp(2.2rem, 3.8vw, 3.4rem); line-height: 1.02; }
   .plat-copy p { margin-top: 16px; font-size: 1.1rem; color: var(--sc-ink-soft); max-width: 40ch; line-height: 1.55; }
   .areas { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
@@ -202,7 +191,8 @@
   /* ---------------- Responsive ---------------- */
   @media (max-width: 1080px) {
     .index { gap: 18px; font-size: .9rem; }
-    .sell, .winter-grid, .tear-grid { grid-template-columns: 1fr; }
+    .sell, .winter-grid, .tear-grid, .lots-head, .lots__end { grid-template-columns: 1fr; }
+    .lots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .sell figure, .preview { position: static; }
     .sell figure img { aspect-ratio: 16 / 10; }
     .season { order: -1; }
@@ -222,12 +212,18 @@
     .index a { padding: 13px 0; border-bottom: 1px solid var(--rule); }
     .menu { display: inline-block; }
     .mast .btn { display: none; }
-    .plat-stage { grid-template-columns: 1fr; grid-template-rows: auto 1fr; align-content: start; gap: 8px; padding-top: calc(var(--mast) + 14px); }
-    .plat-copy { height: 34svh; }
+    .plat-stage { grid-template-columns: 1fr; gap: 28px; }
     .plat-copy p { font-size: 1rem; margin-top: 10px; }
-    .areas button { padding: 10px 0; }
-    .areas small { display: none; }
-    .plat-map svg { max-height: 54svh; }
+    .areas button { padding: 12px 0; }
+    /* Phones: heading, then the map, then the area buttons. */
+    .plat-stage { gap: 0; }
+    .plat-copy { display: contents; }
+    .plat-copy h2 { order: 1; }
+    .plat-copy > p { order: 2; }
+    .plat-map { order: 3; margin-top: 22px; }
+    .areas-title { order: 4; }
+    .areas { order: 5; }
+    .plat-map svg { max-height: none; }
     #plat .minor { display: none; }
     #plat .major, #plat .city { font-size: 22px; }
     .guide-list li { grid-template-columns: 1fr; }
@@ -236,16 +232,13 @@
     body { font-size: 1rem; }
     .hero__title { font-size: clamp(2.2rem, 10vw, 2.8rem); }
     .hero__row p { font-size: 1.08rem; }
-    .lots__lead { width: 82vw; }
-    .lot { width: 80vw; }
-    .lots__end { width: 80vw; }
+    .lots { grid-template-columns: 1fr; }
     .blank { grid-template-columns: 1fr; }
     .agents { flex-direction: column; align-items: flex-start; }
-    .plate__frame { height: 52svh; }
+    .plate__frame { height: auto; aspect-ratio: 1 / 1; }
+    .plate__photo { object-position: 38% 50%; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .plate__mist i { animation: none; }
-    .plate__far, .plate__mist, .plate__fence { transform: none !important; }
     .lot { transition: none; }
   }
 </style>
@@ -292,23 +285,23 @@
       </div>
       <figure class="plate" id="plate">
         <div class="plate__frame">
-          <img class="plate__far" src="https://images.unsplash.com/photo-1599635406076-0f40532a59fc?w=2400&q=75&auto=format&fit=crop" width="2400" height="1600" alt="Horses grazing in a misty pasture at sunrise, with hardwoods behind them" fetchpriority="high">
-          <div class="plate__mist" aria-hidden="true"><i></i></div>
-          <svg class="plate__fence" id="fence" viewBox="0 0 1600 420" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+          <img class="plate__photo" src="https://images.pexels.com/photos/9042971/pexels-photo-9042971.jpeg?auto=compress&cs=tinysrgb&w=2400" width="2400" height="1600" alt="Three horses looking over a white three-board fence on a sunny day" fetchpriority="high">
         </div>
         <figcaption>Stock photo for this sample site.</figcaption>
       </figure>
     </div>
   </section>
 
-  <!-- 2 · APPETITE: the lots travel sideways, one label schema for all -->
-  <section id="farms" data-sc-act="pan" data-sc-span="3.2">
-    <div data-sc-stage class="lots-stage">
-      <div class="lots" id="lots" data-sc-pan="0.04">
-        <div class="lots__lead">
+  <!-- 2 · APPETITE: the lots, laid out like a sale bill, one label schema for all -->
+  <section id="farms" class="sc-section" data-sc-act="flow">
+    <div class="sc-wrap">
+      <div class="lots-head">
+        <div>
           <h2>Farms for sale</h2>
           <p>Every farm on this page is ready for horses: barns, fencing, water, and room to ride.</p>
-          <form class="filters" id="filters" aria-label="Filter farms">
+          <p class="count" id="count" aria-live="polite">Showing all 6 farms</p>
+        </div>
+        <form class="filters" id="filters" aria-label="Filter farms">
             <label>Area
               <select id="fArea">
                 <option value="all">Anywhere</option>
@@ -327,8 +320,9 @@
             </label>
             <label>Indoor arena only <input type="checkbox" id="fIndoor"></label>
           </form>
-          <p class="count" id="count" aria-live="polite">Showing all 6 farms</p>
-        </div>
+      </div>
+
+      <div class="lots" id="lots">
 
         <article class="lot" data-area="west" data-acres="38" data-indoor="1">
           <img src="https://images.unsplash.com/photo-1760636549266-bfa580315552?w=900&q=70&auto=format&fit=crop" width="900" height="675" loading="lazy" alt="Board-fenced pastures rolling toward a line of hardwoods">
@@ -401,42 +395,35 @@
             <div class="lot__foot"><span class="price">$1,875,000</span><a class="ask" href="mailto:farms@example.com?subject=Cannon%20Valley%20Equestrian">Ask about this farm</a></div>
           </div>
         </article>
+      </div>
 
-        <div class="lots__end">
+      <div class="lots__end">
+        <div>
           <h3>Get new farms first</h3>
           <p>One email when a horse property comes up near the metro. Unsubscribe anytime.</p>
-          <form class="signup" id="signup" method="post" action="#">
-            <label for="sEmail" style="position:absolute;left:-9999px">Email address</label>
-            <input id="sEmail" type="email" required placeholder="you@example.com" autocomplete="email">
-            <button class="btn btn--line" type="submit">Send me new farms</button>
-            <p class="msg" id="signupMsg" role="status" hidden>Sample only: this sign-up isn't connected yet.</p>
-          </form>
         </div>
+        <form class="signup" id="signup" method="post" action="#">
+          <label for="sEmail" style="position:absolute;left:-9999px">Email address</label>
+          <input id="sEmail" type="email" required placeholder="you@example.com" autocomplete="email">
+          <button class="btn btn--line" type="submit">Send me new farms</button>
+          <p class="msg" id="signupMsg" role="status" hidden>Sample only: this sign-up isn't connected yet.</p>
+        </form>
       </div>
     </div>
   </section>
 
-  <!-- 3 · PEAK: the plat draws itself and the farms drop onto it -->
-  <section id="map" class="night" data-sc-act="pin" data-sc-span="4.2">
-    <div data-sc-stage class="plat-stage">
+  <!-- 3 · PEAK: the plat map, whole on arrival -->
+  <section id="map" class="night sc-section" data-sc-act="flow">
+    <div class="sc-wrap plat-stage">
       <div class="plat-copy">
-        <p class="plat-quiet" data-sc-cue="0 0.2 0">Where the farms are.</p>
-        <div data-sc-cue="0.16 0.5">
-          <h2>Horse country, mile by mile</h2>
-          <p>Each square is a six-mile township, the same survey grid on every Minnesota plat map.</p>
-        </div>
-        <div data-sc-cue="0.46 0.78">
-          <h2>Fifteen to forty-five miles out</h2>
-          <p>Rings mark straight-line miles from downtown. Most metro horse farms sit between the first ring and the last, where zoning still allows horses.</p>
-        </div>
-        <div data-sc-cue="0.72 1 0.06 0.04">
-          <h2>Pick an area</h2>
-          <ul class="areas" id="areas" style="margin-top:18px">
+        <h2>Where the farms are</h2>
+        <p>Rings mark straight-line miles from downtown. Most metro horse farms sit between 15 and 45 miles out, where zoning still allows horses. Each square is a six-mile township, the same grid as a county plat map.</p>
+        <h3 class="areas-title">Pick an area</h3>
+          <ul class="areas" id="areas">
             <li><button type="button" data-area="west"><b>West metro <span data-count="west"></span></b><small>Medina, Independence, Delano. Hardwoods and the shortest drive to Minneapolis.</small></button></li>
             <li><button type="button" data-area="northeast"><b>North and east <span data-count="northeast"></span></b><small>Hugo, Scandia, Afton. St. Croix bluffs and bigger parcels farther north.</small></button></li>
             <li><button type="button" data-area="south"><b>South metro <span data-count="south"></span></b><small>Hastings, Elko New Market, Cannon Falls. Open farmland and larger acreages.</small></button></li>
           </ul>
-        </div>
       </div>
       <div class="plat-map">
         <svg id="plat" viewBox="0 0 620 620" role="img" aria-labelledby="platTitle">
@@ -547,7 +534,7 @@
       </div>
       <footer class="foot">
         <p>Saddle &amp; Section is a sample brand name. Brokerage name and license details go here. Licensed in Minnesota. Equal Housing Opportunity.</p>
-        <p>Sample site by PrismAgent Solutions. Photos from Unsplash.</p>
+        <p>Sample site by PrismAgent Solutions. Photos from Unsplash and Pexels.</p>
       </footer>
     </div>
   </section>
@@ -559,52 +546,12 @@
 <script>
 (function () {
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
   var NS = 'http://www.w3.org/2000/svg';
   function el(tag, attrs, parent) { var n = document.createElementNS(NS, tag); for (var k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; }
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
-  function seg(p, a, b) { return clamp((p - a) / (b - a), 0, 1); }
-
-  /* ---------- Hero: three planes at three rates ---------- */
-  var fence = document.getElementById('fence');
-  (function drawFence() {
-    // A three-board fence receding to the right. Posts shrink and the ground line rises toward the horizon.
-    var xs = [-260, 60, 430, 720, 945, 1120, 1262, 1378, 1472, 1550, 1615];
-    var sc = [1.25, 1, .78, .62, .5, .41, .34, .29, .25, .22, .2];
-    var P = xs.map(function (x, i) { var s = sc[i], bottom = 430 - (1 - s) * 120; return { x: x, s: s, top: bottom - 330 * s, h: 330 * s, w: 30 * s }; });
-    var g = el('g', { fill: '#101a22' }, fence);
-    [0.1, 0.4, 0.7].forEach(function (f) {
-      for (var i = 0; i < P.length - 1; i++) {
-        var a = P[i], b = P[i + 1], ta = 24 * a.s, tb = 24 * b.s;
-        var y1 = a.top + f * a.h, y2 = b.top + f * b.h;
-        el('polygon', { points: [a.x, y1, b.x, y2, b.x, y2 + tb, a.x, y1 + ta].join(' ') }, g);
-      }
-    });
-    P.forEach(function (p) { if (p.x > -100) el('rect', { x: p.x - p.w / 2, y: p.top - 10 * p.s, width: p.w, height: p.h + 40, rx: 2 }, g); });
-  })();
-
-  var hero = document.getElementById('top');
-  var far = document.querySelector('.plate__far'), mist = document.querySelector('.plate__mist');
-  var mx = 0, tmx = 0;
-  function heroFrame() {
-    var r = hero.getBoundingClientRect();
-    if (r.bottom < 0) return;
-    var h = clamp(-r.top / (r.height * 0.9), 0, 1);
-    mx += (tmx - mx) * 0.08;
-    far.style.transform = 'translate3d(' + (mx * -8).toFixed(2) + 'px,' + (h * 46).toFixed(1) + 'px,0) scale(' + (1.06 - h * 0.03).toFixed(4) + ')';
-    mist.style.transform = 'translate3d(' + (h * -70 + mx * -4).toFixed(1) + 'px,' + (h * 14).toFixed(1) + 'px,0)';
-    mist.style.opacity = (0.95 - h * 0.45).toFixed(3);
-    fence.style.transform = 'translate3d(' + (mx * 16).toFixed(2) + 'px,' + (h * -120).toFixed(1) + 'px,0) scale(' + (1 + h * 0.06).toFixed(4) + ')';
-    hero.setAttribute('data-sc-verify-state', (h * 100).toFixed(0));
-  }
-  if (fine && !reduce) {
-    hero.addEventListener('pointermove', function (e) { tmx = (e.clientX / innerWidth - 0.5) * 2; });
-    hero.addEventListener('pointerleave', function () { tmx = 0; });
-  }
 
   /* ---------- Lots: filter by reordering and dimming, never by removing ---------- */
   var lotsEl = document.getElementById('lots'), lots = [].slice.call(lotsEl.querySelectorAll('.lot'));
-  var endEl = lotsEl.querySelector('.lots__end');
   var fArea = document.getElementById('fArea'), fAcres = document.getElementById('fAcres'), fIndoor = document.getElementById('fIndoor');
   var AREA = { west: 'West metro', northeast: 'North and east', south: 'South metro' };
   function applyFilter() {
@@ -614,7 +561,7 @@
       var ok = (area === 'all' || l.dataset.area === area) && +l.dataset.acres >= min && (!indoor || l.dataset.indoor === '1');
       l.classList.toggle('is-dim', !ok); (ok ? match : miss).push(l); if (ok) hits++;
     });
-    match.concat(miss).forEach(function (l) { lotsEl.insertBefore(l, endEl); });
+    match.concat(miss).forEach(function (l) { lotsEl.appendChild(l); });
     var where = { all: '', west: ' in the west metro', northeast: ' north and east of the Cities', south: ' in the south metro' }[area];
     document.getElementById('count').textContent = hits === lots.length ? 'Showing all ' + lots.length + ' farms' :
       hits === 1 ? '1 of ' + lots.length + ' farms matches' + where + '. It is listed first.' :
@@ -624,16 +571,7 @@
   [fArea, fAcres, fIndoor].forEach(function (x) { x.addEventListener('change', applyFilter); });
   document.getElementById('filters').addEventListener('submit', function (e) { e.preventDefault(); });
 
-  // Keyboard focus inside the rail scrolls the page so the focused lot is in view.
   var farms = document.getElementById('farms');
-  lotsEl.addEventListener('focusin', function (e) {
-    if (reduce) return;
-    var item = e.target.closest('.lot, .lots__end, .lots__lead'); if (!item) return;
-    var over = lotsEl.scrollWidth - innerWidth; if (over <= 0) return;
-    var p = clamp((item.offsetLeft - 24) / (over * 1.04), 0, 1);
-    var top = farms.getBoundingClientRect().top + scrollY, travel = farms.offsetHeight - innerHeight;
-    scrollTo({ top: top + p * travel, behavior: 'instant' });
-  });
 
   function goArea(area) {
     fArea.value = area; fAcres.value = '0'; fIndoor.checked = false; applyFilter();
@@ -642,7 +580,7 @@
   document.querySelectorAll('[data-count]').forEach(function (s) { var n = lots.filter(function (l) { return l.dataset.area === s.dataset.count; }).length; s.textContent = n + ' farm' + (n === 1 ? '' : 's'); });
   document.querySelectorAll('#areas button').forEach(function (b) { b.addEventListener('click', function () { goArea(b.dataset.area); }); });
 
-  /* ---------- The plat: real coordinates, drawn by scroll ---------- */
+  /* ---------- The plat: real coordinates, drawn whole ---------- */
   var C = { lat: 44.965, lon: -93.18 }, PX = 6;
   function xy(lat, lon, cx, cy) { return [(cx || 310) + (lon - C.lon) * 48.8 * PX, (cy || 310) - (lat - C.lat) * 69 * PX]; }
   var TOWNS = [
@@ -659,7 +597,7 @@
     ['Minnesota R.', [[44.52,-93.82],[44.66,-93.64],[44.79,-93.52],[44.81,-93.35],[44.86,-93.23],[44.89,-93.19]], [44.70,-93.80]]
   ];
   var DOWNTOWNS = [['Minneapolis', 44.977, -93.265, 9, -9, 'start'], ['St. Paul', 44.954, -93.090, 0, 26, 'middle']];
-  var LABEL_AT = { Delano: ['end', -10, -6], Independence: ['middle', 0, 24], Medina: ['middle', 0, -14], Corcoran: ['middle', 0, -11], Jordan: ['end', -11, 4], 'Elko New Market': ['end', -11, 4] };
+  var LABEL_AT = { Delano: ['end', -10, -6], Independence: ['middle', 0, 24], Medina: ['end', -4, -12], Corcoran: ['middle', 0, -11], Jordan: ['end', -11, 4], 'Elko New Market': ['end', -11, 4] };
 
   // Build a plat into an svg. opts.anim = register parts for scroll drawing.
   function buildPlat(svg, opts) {
@@ -704,26 +642,7 @@
   }
 
   var plat = document.getElementById('plat');
-  var P = buildPlat(plat, { farms: true, interactive: true });
-  // Prepare stroke drawing.
-  P.grid.forEach(function (l) { l.style.strokeDasharray = 620; });
-  P.rivers.forEach(function (r) { var L = r[0].getTotalLength(); r[0].style.strokeDasharray = L; r[0].dataset.len = L; });
-  P.rings.forEach(function (r) { var L = 2 * Math.PI * r[0].r.baseVal.value; r[0].style.strokeDasharray = L; r[0].dataset.len = L; r[0].setAttribute('transform', 'rotate(-90 310 310)'); });
-  var mapSec = document.getElementById('map');
-  function drawPlat(p) {
-    var gN = P.grid.length;
-    P.grid.forEach(function (l, i) { var t = seg(p, 0.06 + (i / gN) * 0.16, 0.12 + (i / gN) * 0.16); l.style.strokeDashoffset = (620 * (1 - t)).toFixed(1); });
-    P.rivers.forEach(function (r, i) { var t = seg(p, 0.22 + i * 0.04, 0.38 + i * 0.04); r[0].style.strokeDashoffset = (r[0].dataset.len * (1 - t)).toFixed(1); r[1].style.opacity = seg(p, 0.36, 0.44); });
-    P.rings.forEach(function (r, i) { var t = seg(p, 0.42 + i * 0.03, 0.54 + i * 0.03); r[0].style.strokeDashoffset = (r[0].dataset.len * (1 - t)).toFixed(1); r[1].style.opacity = t; });
-    P.towns.forEach(function (g, i) { g.style.opacity = seg(p, 0.5 + (i / P.towns.length) * 0.08, 0.56 + (i / P.towns.length) * 0.08); });
-    P.farms.forEach(function (g, i) { var t = seg(p, 0.6 + i * 0.03, 0.66 + i * 0.03); g.style.opacity = t; g.style.transform = 'translateY(' + ((1 - t) * -22).toFixed(1) + 'px)'; });
-    plat.setAttribute('data-sc-verify-state', [seg(p, .06, .22), seg(p, .22, .46), seg(p, .42, .6), seg(p, .5, .64), seg(p, .6, .81)].map(function (v) { return v.toFixed(2); }).join(','));
-  }
-  function mapFrame() {
-    var r = mapSec.getBoundingClientRect();
-    if (r.bottom < -100 || r.top > innerHeight + 100) return;
-    drawPlat(reduce ? 1 : clamp(-r.top / Math.max(r.height - innerHeight, 1), 0, 1));
-  }
+  buildPlat(plat, { farms: true, interactive: true });
 
   /* ---------- Signature: the tear-off lot lands on the plat ---------- */
   var mini = document.getElementById('mini');
@@ -779,15 +698,6 @@
   menu.addEventListener('click', function () { var o = index.classList.toggle('open'); menu.setAttribute('aria-expanded', o); });
   index.addEventListener('click', function (e) { if (e.target.tagName === 'A') { index.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); } });
 
-  /* ---------- One rAF loop for the bespoke layers ---------- */
-  var ticking = false;
-  function frame() { ticking = false; heroFrame(); mapFrame(); if (Math.abs(tmx - mx) > 0.002) request(); }
-  function request() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
-  addEventListener('scroll', request, { passive: true });
-  addEventListener('resize', request);
-  addEventListener('pointermove', function () { if (fine && !reduce) request(); }, { passive: true });
-  if (reduce) { drawPlat(1); } else { drawPlat(0); }
-  request();
 })();
 </script>
 </body>
