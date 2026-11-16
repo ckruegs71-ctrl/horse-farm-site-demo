@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex, nofollow" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,400..800;1,400..600&family=Archivo:wght@400..700&display=swap" rel="stylesheet" />
 <style>
   :root {
     --snow: #f2f3ef;
@@ -21,26 +21,26 @@
     --fence: #5e574f;
     --pasture: #56703e;
     --line: #cfd3cb;
-    --wide: "Archivo", "Arial Black", system-ui, sans-serif;
-    --serif: "Source Serif 4", Georgia, serif;
+    --wide: "Archivo", system-ui, sans-serif;
+    --display: "Besley", "Clarendon", Georgia, serif;
     --max: 1240px;
   }
   *, *::before, *::after { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { margin: 0; background: var(--snow); color: var(--lake); font-family: var(--serif); font-size: 18px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  body { margin: 0; background: var(--snow); color: var(--lake); font-family: var(--wide); font-size: 18px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
   img { max-width: 100%; display: block; }
   a { color: inherit; }
   :focus-visible { outline: 3px solid var(--barn); outline-offset: 3px; }
   .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
-  h1, h2, h3 { font-family: var(--wide); font-stretch: 118%; font-weight: 800; line-height: 1.02; letter-spacing: -0.015em; margin: 0; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.04; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
   h2 { font-size: clamp(2rem, 4.2vw, 3.4rem); }
-  h3 { font-size: 1.3rem; font-stretch: 105%; font-weight: 700; line-height: 1.15; }
+  h3 { font-size: 1.3rem; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
   p { margin: 0 0 1em; max-width: 64ch; }
   .lede { font-size: 1.2rem; color: var(--fence); }
-  .ui { font-family: var(--wide); font-stretch: 100%; }
+  .ui { font-family: var(--wide); }
 
   /* Buttons */
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5em; font-family: var(--wide); font-stretch: 105%; font-weight: 700; font-size: 1rem; padding: .9em 1.4em; border-radius: 3px; border: 2px solid transparent; text-decoration: none; cursor: pointer; transition: background-color .15s, color .15s, border-color .15s; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5em; font-family: var(--wide); font-weight: 700; font-size: 1rem; padding: .9em 1.4em; border-radius: 3px; border: 2px solid transparent; text-decoration: none; cursor: pointer; transition: background-color .15s, color .15s, border-color .15s; }
   .btn-barn { background: var(--barn); color: #fff; }
   .btn-barn:hover { background: var(--barn-dark); }
   .btn-ghost { border-color: currentColor; color: inherit; background: transparent; }
@@ -56,8 +56,8 @@
   .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 72px; }
   .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .brand-mark { width: 38px; height: 38px; flex: none; }
-  .brand-name { font-family: var(--wide); font-stretch: 125%; font-weight: 900; font-size: 1.05rem; line-height: 1; letter-spacing: -0.01em; }
-  .brand-name small { display: block; font-stretch: 100%; font-weight: 500; font-size: .72rem; color: var(--fence); letter-spacing: 0; margin-top: 4px; }
+  .brand-name { font-family: var(--display); font-weight: 700; font-size: 1.15rem; line-height: 1; letter-spacing: -0.01em; }
+  .brand-name small { display: block; font-weight: 500; font-size: .72rem; color: var(--fence); letter-spacing: 0; margin-top: 4px; }
   .nav-links { display: flex; gap: 28px; font-family: var(--wide); font-size: .95rem; font-weight: 600; }
   .nav-links a { text-decoration: none; padding: 6px 0; border-bottom: 2px solid transparent; }
   .nav-links a:hover { border-color: var(--barn); }
@@ -69,7 +69,7 @@
   .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 60%; }
   .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(24,35,45,.15) 0%, rgba(24,35,45,.05) 40%, rgba(24,35,45,.82) 100%); }
   .hero .wrap { position: relative; z-index: 2; width: 100%; padding-bottom: 150px; }
-  .hero h1 { font-size: clamp(2.7rem, 7.4vw, 6.4rem); font-stretch: 125%; font-weight: 900; max-width: 12ch; line-height: .95; }
+  .hero h1 { font-size: clamp(2.4rem, 4.6vw, 4.3rem); font-weight: 700; max-width: 21ch; line-height: 1.0; letter-spacing: -0.025em; text-shadow: 0 2px 24px rgba(24,35,45,.35); }
   .hero p { font-size: 1.25rem; max-width: 46ch; margin: 1.1em 0 1.6em; color: #eef0ea; }
   .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
   .hero-in { animation: rise .9s cubic-bezier(.2,.7,.2,1) both; }
@@ -107,10 +107,10 @@
   .facts div { padding: 10px 18px 10px 0; margin-right: 18px; border-right: 1px solid var(--line); }
   .facts div:last-child { border-right: 0; margin-right: 0; }
   .facts dt { font-family: var(--wide); font-size: .74rem; color: var(--fence); }
-  .facts dd { margin: 0; font-family: var(--wide); font-stretch: 110%; font-weight: 700; font-size: 1.02rem; }
+  .facts dd { margin: 0; font-family: var(--wide); font-weight: 700; font-variant-numeric: tabular-nums; font-size: 1.02rem; }
   .farm-note { font-size: .98rem; color: var(--fence); margin-bottom: 16px; }
   .farm-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-  .price { font-family: var(--wide); font-stretch: 112%; font-weight: 800; font-size: 1.45rem; }
+  .price { font-family: var(--display); font-weight: 700; font-size: 1.5rem; font-variant-numeric: lining-nums tabular-nums; }
   .ask { background: none; border: 0; padding: 6px 0; font-family: var(--wide); font-weight: 700; font-size: .95rem; color: var(--barn); cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
   .ask:hover { color: var(--barn-dark); }
   .empty { display: none; border: 2px dashed var(--line); padding: 48px 32px; text-align: center; }
@@ -132,7 +132,7 @@
   .areas button { all: unset; box-sizing: border-box; width: 100%; cursor: pointer; padding: 22px 0; display: block; }
   .areas button:focus-visible { outline: 3px solid var(--hay); outline-offset: 2px; }
   .areas h3 { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: 1.35rem; }
-  .areas h3 span { font-size: .85rem; font-stretch: 100%; font-weight: 600; color: var(--hay); white-space: nowrap; }
+  .areas h3 span { font-size: .85rem; font-weight: 600; color: var(--hay); white-space: nowrap; }
   .areas p { margin: 8px 0 0; color: #b9c2c9; font-size: 1rem; }
   .areas button[aria-pressed="true"] h3 { color: var(--hay); }
 
@@ -143,7 +143,7 @@
   .sell-photo figcaption { font-family: var(--wide); font-size: .82rem; color: var(--fence); margin-top: 10px; }
   .steps { list-style: none; counter-reset: step; padding: 0; margin: 40px 0 36px; }
   .steps li { counter-increment: step; display: grid; grid-template-columns: 56px 1fr; gap: 4px 12px; padding: 22px 0; border-top: 1px solid var(--line); }
-  .steps li::before { content: counter(step); grid-row: span 2; font-family: var(--wide); font-stretch: 125%; font-weight: 900; font-size: 2rem; line-height: 1; color: var(--barn); }
+  .steps li::before { content: counter(step); grid-row: span 2; font-family: var(--display); font-weight: 700; font-size: 2rem; line-height: 1; color: var(--barn); }
   .steps p { margin: 0; color: var(--fence); font-size: 1rem; }
 
   /* Winter */
@@ -282,7 +282,7 @@
     <img src="https://images.unsplash.com/photo-1599635406076-0f40532a59fc?w=2400&q=75&auto=format&fit=crop" alt="Horses grazing in a misty pasture at sunrise, with a line of hardwoods behind them" fetchpriority="high" />
     <div class="wrap">
       <h1 class="hero-in">Horse farms within an hour of the Twin Cities.</h1>
-      <p class="hero-in d2">We list and sell equestrian property across Minnesota's metro horse country, from Medina and Independence to Scandia, Hastings, and Northfield.</p>
+      <p class="hero-in d2">We list and sell horse property across Minnesota's metro horse country, from Medina to Scandia, Hastings, and Northfield.</p>
       <div class="hero-actions hero-in d3">
         <a class="btn btn-barn" href="#farms">Browse farms for sale</a>
         <a class="btn btn-ghost" href="#value">Get your farm's value</a>
@@ -580,7 +580,7 @@
     el('polyline', { points: pts.map(p => xy(...p).join(',')).join(' '), fill: 'none', stroke: '#4f7a99', 'stroke-width': 3, 'stroke-linejoin': 'round', 'stroke-linecap': 'round', opacity: .8 });
   }
   const rl = [["Mississippi", 45.16, -93.52], ["St. Croix", 45.36, -92.66], ["Minnesota R.", 44.70, -93.80]];
-  rl.forEach(([t, la, lo]) => { const [x, y] = xy(la, lo); el('text', { x, y, fill: '#6f98b5', 'font-family': 'Source Serif 4, Georgia, serif', 'font-style': 'italic', 'font-size': 13 }).textContent = t; });
+  rl.forEach(([t, la, lo]) => { const [x, y] = xy(la, lo); el('text', { x, y, fill: '#6f98b5', 'font-family': 'Besley, Georgia, serif', 'font-style': 'italic', 'font-size': 13 }).textContent = t; });
   // Rings
   [15, 30, 45].forEach(mi => {
     el('circle', { cx: CX, cy: CY, r: mi * PX, class: 'ring' });
