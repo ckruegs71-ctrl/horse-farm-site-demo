@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Saddle &amp; Section | Horse Farms Around the Twin Cities</title>
+<meta name="description" content="Sample website design: horse farms and equestrian property for sale within an hour of Minneapolis and St. Paul, and a seller valuation service." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --snow: #f2f3ef;
+    --snow-2: #e7e9e3;
+    --lake: #18232d;
+    --lake-2: #22313e;
+    --barn: #9b2a22;
+    --barn-dark: #7d1f19;
+    --hay: #d7c49a;
+    --fence: #5e574f;
+    --pasture: #56703e;
+    --line: #cfd3cb;
+    --wide: "Archivo", "Arial Black", system-ui, sans-serif;
+    --serif: "Source Serif 4", Georgia, serif;
+    --max: 1240px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--snow); color: var(--lake); font-family: var(--serif); font-size: 18px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--barn); outline-offset: 3px; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  h1, h2, h3 { font-family: var(--wide); font-stretch: 118%; font-weight: 800; line-height: 1.02; letter-spacing: -0.015em; margin: 0; }
+  h2 { font-size: clamp(2rem, 4.2vw, 3.4rem); }
+  h3 { font-size: 1.3rem; font-stretch: 105%; font-weight: 700; line-height: 1.15; }
+  p { margin: 0 0 1em; max-width: 64ch; }
+  .lede { font-size: 1.2rem; color: var(--fence); }
+  .ui { font-family: var(--wide); font-stretch: 100%; }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5em; font-family: var(--wide); font-stretch: 105%; font-weight: 700; font-size: 1rem; padding: .9em 1.4em; border-radius: 3px; border: 2px solid transparent; text-decoration: none; cursor: pointer; transition: background-color .15s, color .15s, border-color .15s; }
+  .btn-barn { background: var(--barn); color: #fff; }
+  .btn-barn:hover { background: var(--barn-dark); }
+  .btn-ghost { border-color: currentColor; color: inherit; background: transparent; }
+  .btn-ghost:hover { background: rgba(255,255,255,.12); }
+  .btn-ink { background: var(--lake); color: var(--snow); }
+  .btn-ink:hover { background: var(--lake-2); }
+
+  /* Demo ribbon */
+  .demo { background: var(--hay); color: var(--lake); font-family: var(--wide); font-size: .85rem; text-align: center; padding: .55em 16px; }
+
+  /* Nav */
+  .nav { position: sticky; top: 0; z-index: 40; background: rgba(242,243,239,.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 72px; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .brand-mark { width: 38px; height: 38px; flex: none; }
+  .brand-name { font-family: var(--wide); font-stretch: 125%; font-weight: 900; font-size: 1.05rem; line-height: 1; letter-spacing: -0.01em; }
+  .brand-name small { display: block; font-stretch: 100%; font-weight: 500; font-size: .72rem; color: var(--fence); letter-spacing: 0; margin-top: 4px; }
+  .nav-links { display: flex; gap: 28px; font-family: var(--wide); font-size: .95rem; font-weight: 600; }
+  .nav-links a { text-decoration: none; padding: 6px 0; border-bottom: 2px solid transparent; }
+  .nav-links a:hover { border-color: var(--barn); }
+  .nav-cta { padding: .7em 1.1em; font-size: .92rem; }
+  .menu-btn { display: none; background: none; border: 2px solid var(--lake); border-radius: 3px; font-family: var(--wide); font-weight: 700; padding: .45em .8em; color: var(--lake); cursor: pointer; }
+
+  /* Hero */
+  .hero { position: relative; min-height: min(88vh, 860px); display: flex; align-items: flex-end; color: #fff; overflow: hidden; }
+  .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 60%; }
+  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(24,35,45,.15) 0%, rgba(24,35,45,.05) 40%, rgba(24,35,45,.82) 100%); }
+  .hero .wrap { position: relative; z-index: 2; width: 100%; padding-bottom: 150px; }
+  .hero h1 { font-size: clamp(2.7rem, 7.4vw, 6.4rem); font-stretch: 125%; font-weight: 900; max-width: 12ch; line-height: .95; }
+  .hero p { font-size: 1.25rem; max-width: 46ch; margin: 1.1em 0 1.6em; color: #eef0ea; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .hero-in { animation: rise .9s cubic-bezier(.2,.7,.2,1) both; }
+  .hero-in.d2 { animation-delay: .15s; } .hero-in.d3 { animation-delay: .3s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+  /* Search panel */
+  .search { position: relative; z-index: 5; margin-top: -86px; }
+  .search form { background: #fff; border-radius: 4px; box-shadow: 0 18px 50px -20px rgba(24,35,45,.45); display: grid; grid-template-columns: 1.3fr 1fr 1.3fr auto; align-items: end; gap: 0; }
+  .field { padding: 18px 22px; border-right: 1px solid var(--line); }
+  .field label, .field .label { display: block; font-family: var(--wide); font-size: .8rem; font-weight: 700; color: var(--fence); margin-bottom: 6px; }
+  .field select { width: 100%; font: inherit; font-family: var(--wide); font-weight: 600; font-size: 1.02rem; color: var(--lake); border: 0; background: transparent; padding: 4px 0; cursor: pointer; }
+  .check { display: flex; align-items: center; gap: 10px; font-family: var(--wide); font-weight: 600; font-size: 1.02rem; cursor: pointer; padding: 4px 0; }
+  .check input { width: 20px; height: 20px; accent-color: var(--barn); }
+  .search .btn { margin: 14px; padding: 1.05em 1.6em; }
+
+  section { padding: 110px 0; }
+  .section-head { display: flex; justify-content: space-between; align-items: end; gap: 32px; flex-wrap: wrap; margin-bottom: 44px; }
+  .section-head p { margin: 0; }
+
+  /* Listings */
+  #farms { padding-top: 90px; }
+  .count { font-family: var(--wide); font-weight: 600; color: var(--fence); font-size: .95rem; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px 28px; }
+  .farm { display: flex; flex-direction: column; }
+  .farm-photo { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--snow-2); }
+  .farm-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  .farm:hover .farm-photo img { transform: scale(1.03); }
+  .tags { position: absolute; top: 12px; left: 12px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .tag { font-family: var(--wide); font-size: .74rem; font-weight: 700; padding: .35em .7em; border-radius: 2px; background: rgba(242,243,239,.94); color: var(--lake); }
+  .tag.status { background: var(--barn); color: #fff; }
+  .farm-body { padding-top: 18px; display: flex; flex-direction: column; flex: 1; }
+  .farm-place { font-family: var(--wide); font-size: .88rem; font-weight: 600; color: var(--fence); margin: 6px 0 14px; }
+  .facts { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin: 0 0 14px; }
+  .facts div { padding: 10px 18px 10px 0; margin-right: 18px; border-right: 1px solid var(--line); }
+  .facts div:last-child { border-right: 0; margin-right: 0; }
+  .facts dt { font-family: var(--wide); font-size: .74rem; color: var(--fence); }
+  .facts dd { margin: 0; font-family: var(--wide); font-stretch: 110%; font-weight: 700; font-size: 1.02rem; }
+  .farm-note { font-size: .98rem; color: var(--fence); margin-bottom: 16px; }
+  .farm-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .price { font-family: var(--wide); font-stretch: 112%; font-weight: 800; font-size: 1.45rem; }
+  .ask { background: none; border: 0; padding: 6px 0; font-family: var(--wide); font-weight: 700; font-size: .95rem; color: var(--barn); cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+  .ask:hover { color: var(--barn-dark); }
+  .empty { display: none; border: 2px dashed var(--line); padding: 48px 32px; text-align: center; }
+  .empty p { margin: 0 auto 18px; }
+
+  /* Map */
+  .map-sec { background: var(--lake); color: var(--snow); }
+  .map-sec .lede { color: #b9c2c9; }
+  .map-layout { display: grid; grid-template-columns: 1.25fr 1fr; gap: 64px; align-items: start; }
+  .map-box { background: #1d2a36; border-radius: 4px; padding: 10px; }
+  #map { width: 100%; height: auto; display: block; }
+  #map .town { cursor: pointer; }
+  #map .town:focus-visible circle { stroke: var(--hay); stroke-width: 3; }
+  #map .town:focus { outline: none; }
+  .ring { fill: none; stroke: var(--hay); stroke-opacity: .55; stroke-dasharray: 4 6; }
+  .map-note { font-family: var(--wide); font-size: .8rem; color: #93a0aa; padding: 10px 8px 4px; margin: 0; max-width: none; }
+  .areas { list-style: none; margin: 32px 0 0; padding: 0; }
+  .areas li { border-top: 1px solid #34465a; }
+  .areas button { all: unset; box-sizing: border-box; width: 100%; cursor: pointer; padding: 22px 0; display: block; }
+  .areas button:focus-visible { outline: 3px solid var(--hay); outline-offset: 2px; }
+  .areas h3 { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: 1.35rem; }
+  .areas h3 span { font-size: .85rem; font-stretch: 100%; font-weight: 600; color: var(--hay); white-space: nowrap; }
+  .areas p { margin: 8px 0 0; color: #b9c2c9; font-size: 1rem; }
+  .areas button[aria-pressed="true"] h3 { color: var(--hay); }
+
+  /* Sellers */
+  .sell { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+  .sell-photo { position: sticky; top: 100px; }
+  .sell-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+  .sell-photo figcaption { font-family: var(--wide); font-size: .82rem; color: var(--fence); margin-top: 10px; }
+  .steps { list-style: none; counter-reset: step; padding: 0; margin: 40px 0 36px; }
+  .steps li { counter-increment: step; display: grid; grid-template-columns: 56px 1fr; gap: 4px 12px; padding: 22px 0; border-top: 1px solid var(--line); }
+  .steps li::before { content: counter(step); grid-row: span 2; font-family: var(--wide); font-stretch: 125%; font-weight: 900; font-size: 2rem; line-height: 1; color: var(--barn); }
+  .steps p { margin: 0; color: var(--fence); font-size: 1rem; }
+
+  /* Winter */
+  .winter { position: relative; color: #fff; padding: 0; }
+  .winter-inner { display: grid; grid-template-columns: 1.1fr 1fr; min-height: 560px; }
+  .winter-photo { position: relative; }
+  .winter-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .winter-copy { background: var(--lake-2); padding: 80px clamp(24px, 6vw, 88px); display: flex; flex-direction: column; justify-content: center; }
+  .winter-copy p { color: #c8d0d6; }
+  .winter-list { list-style: none; padding: 0; margin: 10px 0 0; }
+  .winter-list li { font-family: var(--wide); font-weight: 600; font-size: 1.05rem; padding: 12px 0 12px 30px; border-top: 1px solid #3a4c5e; position: relative; }
+  .winter-list li::before { content: ""; position: absolute; left: 2px; top: 50%; width: 12px; height: 12px; margin-top: -6px; background: var(--hay); transform: rotate(45deg); }
+
+  /* Guides */
+  .guides { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 2px solid var(--lake); }
+  .guide { padding: 28px 28px 32px 0; border-right: 1px solid var(--line); }
+  .guide + .guide { padding-left: 28px; }
+  .guide:last-child { border-right: 0; }
+  .guide .kind { font-family: var(--wide); font-size: .8rem; font-weight: 600; color: var(--barn); margin-bottom: 14px; display: block; }
+  .guide h3 { font-size: 1.45rem; margin-bottom: 12px; }
+  .guide p { color: var(--fence); font-size: 1rem; }
+
+  /* Team placeholder + signup */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .placeholder { border: 2px dashed #b9bdb3; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+  .placeholder .avatars { display: flex; gap: 12px; margin-bottom: 22px; }
+  .placeholder .avatars span { width: 64px; height: 64px; border-radius: 50%; background: var(--snow-2); border: 2px dashed #b9bdb3; }
+  .placeholder p { color: var(--fence); margin: 10px 0 0; }
+  .signup { background: var(--hay); padding: 40px; }
+  .signup p { color: #3b3a33; }
+  .inline-form { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+  .inline-form input { flex: 1 1 220px; }
+
+  /* Forms */
+  input, textarea, .form select { font: inherit; font-size: 1rem; color: var(--lake); background: #fff; border: 1.5px solid #b9bdb3; border-radius: 3px; padding: .8em .9em; width: 100%; }
+  input:focus, textarea:focus, .form select:focus { outline: none; border-color: var(--barn); box-shadow: 0 0 0 3px rgba(155,42,34,.18); }
+  .form-msg { font-family: var(--wide); font-weight: 600; font-size: .95rem; margin-top: 14px; display: none; }
+  .form-msg.show { display: block; }
+
+  .value-sec { background: var(--barn); color: #fff; }
+  .value-layout { display: grid; grid-template-columns: 1fr 1.15fr; gap: 72px; align-items: start; }
+  .value-sec p { color: #f3dcd9; }
+  .contact-lines { margin-top: 30px; font-family: var(--wide); font-weight: 600; line-height: 2; }
+  .contact-lines span { color: #f3dcd9; font-weight: 500; }
+  .form { background: var(--snow); color: var(--lake); padding: 36px; border-radius: 4px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px 18px; }
+  .form label { font-family: var(--wide); font-weight: 700; font-size: .82rem; color: var(--fence); display: flex; flex-direction: column; gap: 6px; }
+  .form .full { grid-column: 1 / -1; }
+  .form .btn { justify-self: start; }
+
+  footer { background: var(--lake); color: #b9c2c9; padding: 64px 0 40px; font-size: .95rem; }
+  .foot { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
+  footer .brand-name { color: var(--snow); }
+  footer .brand-name small { color: #93a0aa; }
+  footer h4 { font-family: var(--wide); color: var(--snow); margin: 0 0 12px; font-size: .95rem; }
+  footer ul { list-style: none; padding: 0; margin: 0; line-height: 2; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--hay); }
+  .legal { border-top: 1px solid #34465a; margin-top: 48px; padding-top: 24px; font-size: .84rem; color: #93a0aa; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .legal p { margin: 0; }
+
+  @media (max-width: 1020px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .map-layout, .sell, .value-layout { grid-template-columns: 1fr; gap: 48px; }
+    .sell-photo { position: static; }
+    .map-layout > .map-box { order: 2; }
+    .sell-photo img { aspect-ratio: 16 / 10; }
+    .winter-inner { grid-template-columns: 1fr; }
+    .winter-photo { min-height: 340px; }
+    .search form { grid-template-columns: 1fr 1fr; }
+    .field:nth-child(2) { border-right: 0; }
+    .field { border-bottom: 1px solid var(--line); }
+    .search .btn { grid-column: 1 / -1; }
+  }
+  @media (max-width: 860px) {
+    .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: var(--snow); flex-direction: column; gap: 0; padding: 8px 24px 20px; border-bottom: 1px solid var(--line); }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .menu-btn { display: inline-block; }
+    .nav-cta { display: none; }
+    .guides { grid-template-columns: 1fr; }
+    .guide, .guide + .guide { padding: 26px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+    .split { grid-template-columns: 1fr; }
+    .foot { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    body { font-size: 17px; }
+    .wrap { padding: 0 16px; }
+    section { padding: 76px 0; }
+    .grid { grid-template-columns: 1fr; }
+    .hero .wrap { padding-bottom: 110px; }
+    .search form { grid-template-columns: 1fr; }
+    .field { border-right: 0; }
+    .form { grid-template-columns: 1fr; padding: 24px; }
+    .placeholder, .signup { padding: 28px; }
+    .facts div { padding-right: 12px; margin-right: 12px; }
+    /* Map shrinks to ~55% on phones: keep only labels that matter, and make them readable. */
+    #map .minor { display: none; }
+    #map .major, #map .city { font-size: 21px; }
+    .map-box { padding: 4px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo" role="note">Sample site for discussion. The farms, prices, and brand name on this page are placeholders, not real listings.</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Saddle and Section Horse Properties, home">
+      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <rect x="1.5" y="1.5" width="37" height="37" fill="none" stroke="#18232d" stroke-width="3"/>
+        <path d="M1.5 20h37M20 1.5v37" stroke="#18232d" stroke-width="1.5" opacity=".35"/>
+        <path d="M8 31V19l12-9 12 9v12z" fill="#9b2a22"/>
+        <path d="M16 31v-8h8v8" fill="#f2f3ef"/>
+      </svg>
+      <span class="brand-name">Saddle &amp; Section<small>Horse properties around the Twin Cities</small></span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Main">
+      <a href="#farms">Farms for sale</a>
+      <a href="#map-sec">Horse country map</a>
+      <a href="#sell">Selling a farm</a>
+      <a href="#guides">Buyer guides</a>
+      <a href="#value">Contact</a>
+    </nav>
+    <a class="btn btn-barn nav-cta" href="#value">Get a farm valuation</a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu</button>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <img src="https://images.unsplash.com/photo-1599635406076-0f40532a59fc?w=2400&q=75&auto=format&fit=crop" alt="Horses grazing in a misty pasture at sunrise, with a line of hardwoods behind them" fetchpriority="high" />
+    <div class="wrap">
+      <h1 class="hero-in">Horse farms within an hour of the Twin Cities.</h1>
+      <p class="hero-in d2">We list and sell equestrian property across Minnesota's metro horse country, from Medina and Independence to Scandia, Hastings, and Northfield.</p>
+      <div class="hero-actions hero-in d3">
+        <a class="btn btn-barn" href="#farms">Browse farms for sale</a>
+        <a class="btn btn-ghost" href="#value">Get your farm's value</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="search wrap">
+    <form id="searchForm" aria-label="Search farms">
+      <div class="field">
+        <label for="fArea">Area</label>
+        <select id="fArea">
+          <option value="all">Anywhere around the metro</option>
+          <option value="west">West metro</option>
+          <option value="northeast">North and east</option>
+          <option value="south">South metro</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="fAcres">Acres</label>
+        <select id="fAcres">
+          <option value="0">Any size</option>
+          <option value="10">10 acres or more</option>
+          <option value="20">20 acres or more</option>
+          <option value="40">40 acres or more</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="label">Riding</span>
+        <label class="check" for="fIndoor"><input type="checkbox" id="fIndoor" /> Must have an indoor arena</label>
+      </div>
+      <button class="btn btn-barn" type="submit">Show farms</button>
+    </form>
+  </div>
+
+  <section id="farms">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>Farms for sale</h2>
+          <p class="lede" style="margin-top:14px">Every farm here is ready for horses: barns, fencing, water, and room to ride.</p>
+        </div>
+        <div class="count" id="count" aria-live="polite"></div>
+      </div>
+      <div class="grid" id="grid"></div>
+      <div class="empty" id="empty">
+        <p>No farms match those filters. Try a wider area or fewer acres.</p>
+        <button class="btn btn-ink" type="button" id="clearBtn">Clear filters</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="map-sec" id="map-sec">
+    <div class="wrap map-layout">
+      <div class="map-box">
+        <svg id="map" viewBox="0 0 620 620" role="img" aria-labelledby="mapTitle">
+          <title id="mapTitle">Map of horse country around Minneapolis and St. Paul, with rings at 15, 30, and 45 miles</title>
+        </svg>
+        <p class="map-note">Rings show straight-line miles from the downtowns. Each grid square is a six-mile township, the same survey grid you see on any Minnesota plat map.</p>
+      </div>
+      <div>
+        <h2>Horse country, mile by mile</h2>
+        <p class="lede" style="margin-top:18px">Most horse farms near the metro sit 15 to 45 miles out, where zoning still allows horses and land still comes in 10, 20, and 40-acre pieces. Pick an area to see the farms there.</p>
+        <ul class="areas" id="areas">
+          <li><button type="button" data-area="west" aria-pressed="false"><h3>West metro <span data-count="west"></span></h3><p>Medina, Independence, Delano. Rolling hardwoods, hunter and dressage barns, and the shortest drive to Minneapolis.</p></button></li>
+          <li><button type="button" data-area="northeast" aria-pressed="false"><h3>North and east <span data-count="northeast"></span></h3><p>Hugo, Forest Lake, Scandia, Afton. St. Croix Valley bluffs, trail riding, and bigger parcels the farther north you go.</p></button></li>
+          <li><button type="button" data-area="south" aria-pressed="false"><h3>South metro <span data-count="south"></span></h3><p>Hastings, Elko New Market, Northfield, Cannon Falls. Open farmland, larger acreages, and boarding operations.</p></button></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="sell">
+    <div class="wrap sell">
+      <figure class="sell-photo" style="margin:0">
+        <img src="https://images.unsplash.com/photo-1622667144477-362ab35dbe3d?w=1400&q=75&auto=format&fit=crop" alt="Red gambrel barn on a fieldstone foundation under a blue sky" loading="lazy" />
+        <figcaption>A barn like this tells a buyer more than the house does.</figcaption>
+      </figure>
+      <div>
+        <h2>Selling a horse farm takes a different buyer.</h2>
+        <p class="lede" style="margin-top:18px">A house buyer sees a big yard. A horse buyer walks straight to the barn, checks the arena footing, and asks how the water works in January. We market your farm to the people asking those questions.</p>
+        <ol class="steps">
+          <li><h3>Walk the farm with us</h3><p>Barn, arena, fencing, pasture, hay storage, wells, and outbuildings. We note what horse buyers will ask about before they ask it.</p></li>
+          <li><h3>Price it against horse properties</h3><p>Ordinary home comps miss what a heated indoor arena or 20 fenced acres is worth. We price from equestrian sales.</p></li>
+          <li><h3>Shoot it in the right season</h3><p>Green pasture sells in June. A lit arena on a snowy evening sells in December. We plan photos and video for both.</p></li>
+          <li><h3>Put it in front of riders</h3><p>Boarding barns, trainers, breed and show communities, and our buyer email list, on top of the MLS.</p></li>
+          <li><h3>Close cleanly</h3><p>Well and septic inspections, surveys, animal-unit zoning, and moving the horses on closing day.</p></li>
+        </ol>
+        <a class="btn btn-barn" href="#value">Get a farm valuation</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="winter" aria-labelledby="winterTitle">
+    <div class="winter-inner">
+      <div class="winter-photo">
+        <img src="https://images.unsplash.com/photo-1767869445617-140babded4e6?w=1600&q=75&auto=format&fit=crop" alt="Two horses in winter blankets grazing in deep snow" loading="lazy" />
+      </div>
+      <div class="winter-copy">
+        <h2 id="winterTitle">Built for a Minnesota winter</h2>
+        <p style="margin-top:18px">Buyers here ask about things a Florida listing never mentions. Every one of our listings answers them up front:</p>
+        <ul class="winter-list">
+          <li>Heated or insulated barn</li>
+          <li>Heated waterers and frost-free hydrants</li>
+          <li>Indoor arena size, footing, and lighting</li>
+          <li>Plowed access to the barn and arena</li>
+          <li>Winter turnout and run-in sheds</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="guides">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Buyer guides</h2>
+        <p class="lede">Plain answers to the questions we hear most. Sample articles for this demo.</p>
+      </div>
+      <div class="guides">
+        <article class="guide">
+          <span class="kind">Land</span>
+          <h3>How many acres do you need per horse in Minnesota?</h3>
+          <p>Pasture, hay, and what your county allows, worked out for a real herd.</p>
+        </article>
+        <article class="guide">
+          <span class="kind">Zoning</span>
+          <h3>Animal units, county by county</h3>
+          <p>Why two farms with the same acreage can allow very different numbers of horses.</p>
+        </article>
+        <article class="guide">
+          <span class="kind">Facilities</span>
+          <h3>The indoor arena checklist</h3>
+          <p>Size, footing, lighting, and heat, and what each one adds to the price.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap split">
+      <div class="placeholder">
+        <div class="avatars" aria-hidden="true"><span></span><span></span></div>
+        <h3>Meet the agents</h3>
+        <p>Agent photos, bios, and each agent's horse background go here. Buyers and sellers read this section closely before they call.</p>
+      </div>
+      <div class="signup">
+        <h3 style="font-size:1.6rem">Get new farms first</h3>
+        <p style="margin-top:12px">One email when a horse property comes up near the metro. Unsubscribe anytime.</p>
+        <form class="inline-form" id="signupForm">
+          <label for="sEmail" class="sr" style="position:absolute;left:-9999px">Email address</label>
+          <input id="sEmail" type="email" required placeholder="you@example.com" autocomplete="email" />
+          <button class="btn btn-ink" type="submit">Send me new farms</button>
+        </form>
+        <p class="form-msg" id="signupMsg" role="status">Demo only: sign-up isn't connected yet.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="value-sec" id="value">
+    <div class="wrap value-layout">
+      <div>
+        <h2>What's your farm worth?</h2>
+        <p class="lede" style="margin-top:18px;color:#f3dcd9">Tell us a little about the property. We'll walk it with you and send a price range based on horse farm sales, not house comps.</p>
+        <div class="contact-lines">
+          <div><span>Call</span> (612) 555-0100</div>
+          <div><span>Email</span> farms@example.com</div>
+          <div><span>Office</span> Serving the Twin Cities metro</div>
+        </div>
+      </div>
+      <form class="form" id="valueForm">
+        <label>Your name<input name="name" required autocomplete="name" /></label>
+        <label>Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+        <label class="full">Email<input name="email" type="email" required autocomplete="email" /></label>
+        <label>Town or township<input name="town" placeholder="Independence" /></label>
+        <label>Acres<input name="acres" inputmode="numeric" placeholder="20" /></label>
+        <label>Stalls<input name="stalls" inputmode="numeric" placeholder="8" /></label>
+        <label>Indoor arena?
+          <select name="indoor"><option>Yes</option><option>No</option><option>Covered only</option></select>
+        </label>
+        <label class="full">Anything else we should know<textarea name="message" id="message" rows="4"></textarea></label>
+        <button class="btn btn-barn" type="submit">Request my valuation</button>
+        <p class="form-msg full" id="valueMsg" role="status">Thanks. This demo form isn't connected yet. On the live site it goes straight to the agents.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <span class="brand-name">Saddle &amp; Section<small>Sample brand name for this demo</small></span>
+        <p style="margin-top:18px">Horse farms and equestrian property for sale within an hour of Minneapolis and St. Paul.</p>
+      </div>
+      <div>
+        <h4>Buyers</h4>
+        <ul><li><a href="#farms">Farms for sale</a></li><li><a href="#map-sec">Horse country map</a></li><li><a href="#guides">Buyer guides</a></li></ul>
+      </div>
+      <div>
+        <h4>Sellers</h4>
+        <ul><li><a href="#sell">How we sell farms</a></li><li><a href="#value">Get a farm valuation</a></li><li><a href="#value">Contact the agents</a></li></ul>
+      </div>
+    </div>
+    <div class="legal">
+      <p>Brokerage name and license details go here. Licensed in Minnesota. Equal Housing Opportunity.</p>
+      <p>Demo site by PrismAgent Solutions. Photos from Unsplash.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Sample listings. Placeholders for the demo, not real properties.
+  const IMG = id => `https://images.unsplash.com/photo-${id}?w=900&q=70&auto=format&fit=crop`;
+  const farms = [
+    { name: "Crow River Hunter Farm", town: "Independence", county: "Hennepin County", area: "west", acres: 38, stalls: 14, arena: "72 x 160 heated", indoor: true, miles: "27 mi to Minneapolis", price: 1450000, status: "New", img: "1760636549266-bfa580315552", alt: "Board-fenced pastures rolling toward a line of hardwoods", note: "Show-ready hunter barn with wash rack, tack room, and eight fenced paddocks." },
+    { name: "Long Lake Road Stable", town: "Medina", county: "Hennepin County", area: "west", acres: 16, stalls: 18, arena: "70 x 140", indoor: true, miles: "19 mi to Minneapolis", price: 1295000, status: "Pending", img: "1633630663326-2b48b25c6fb2", alt: "Red barn with white trim at the edge of a green wood", note: "Working boarding stable with a waiting list and an updated four-bedroom farmhouse." },
+    { name: "Red Gambrel Farm", town: "Hugo", county: "Washington County", area: "northeast", acres: 20, stalls: 10, arena: "Outdoor only", indoor: false, miles: "19 mi to St. Paul", price: 789000, status: "", img: "1622667144477-362ab35dbe3d", alt: "Red gambrel barn on a stone foundation", note: "1920s gambrel barn on fieldstone, rebuilt stalls, two outdoor rings, and heated waterers." },
+    { name: "St. Croix Bluff Farm", town: "Afton", county: "Washington County", area: "northeast", acres: 45, stalls: 12, arena: "60 x 120", indoor: true, miles: "22 mi to St. Paul", price: 2100000, status: "New", img: "1760285878002-f471bbbee583", alt: "Black board fence along a pasture with fall color behind", note: "Black board fencing, river-valley views, and a lit indoor arena for winter riding." },
+    { name: "Oak Savanna Hobby Farm", town: "Elko New Market", county: "Scott County", area: "south", acres: 12, stalls: 4, arena: "Outdoor only", indoor: false, miles: "30 mi to Minneapolis", price: 624900, status: "", img: "1641532286353-6cde58eaa759", alt: "Weathered red barn with a fenced paddock under oak trees", note: "A first horse property: four stalls, run-in shed, and shaded oak pasture." },
+    { name: "Cannon Valley Equestrian", town: "Cannon Falls", county: "Goodhue County", area: "south", acres: 62, stalls: 24, arena: "80 x 200 heated", indoor: true, miles: "40 mi to St. Paul", price: 1875000, status: "", img: "1694885143306-3dfea504b032", alt: "Bright center aisle of a modern horse barn lined with stalls", note: "Full boarding and training facility with viewing lounge, hay barn, and trailer parking." }
+  ];
+
+  const grid = document.getElementById('grid');
+  const fArea = document.getElementById('fArea'), fAcres = document.getElementById('fAcres'), fIndoor = document.getElementById('fIndoor');
+  const money = n => '$' + n.toLocaleString('en-US');
+
+  function card(f) {
+    return `<article class="farm">
+      <div class="farm-photo"><img src="${IMG(f.img)}" alt="${f.alt}" loading="lazy" />
+        <div class="tags"><span class="tag">Sample listing</span>${f.status ? `<span class="tag status">${f.status}</span>` : ''}</div></div>
+      <div class="farm-body">
+        <h3>${f.name}</h3>
+        <div class="farm-place">${f.town}, ${f.county}. ${f.miles}</div>
+        <dl class="facts">
+          <div><dt>Acres</dt><dd>${f.acres}</dd></div>
+          <div><dt>Stalls</dt><dd>${f.stalls}</dd></div>
+          <div><dt>Arena</dt><dd>${f.arena}</dd></div>
+        </dl>
+        <p class="farm-note">${f.note}</p>
+        <div class="farm-foot"><span class="price">${money(f.price)}</span>
+          <button class="ask" type="button" data-farm="${f.name}">Ask about this farm</button></div>
+      </div></article>`;
+  }
+
+  function render() {
+    const area = fArea.value, min = +fAcres.value, indoor = fIndoor.checked;
+    const list = farms.filter(f => (area === 'all' || f.area === area) && f.acres >= min && (!indoor || f.indoor));
+    grid.innerHTML = list.map(card).join('');
+    document.getElementById('empty').style.display = list.length ? 'none' : 'block';
+    document.getElementById('count').textContent = `Showing ${list.length} of ${farms.length} farms`;
+    document.querySelectorAll('#areas button').forEach(b => b.setAttribute('aria-pressed', b.dataset.area === area));
+    document.querySelectorAll('#map .town').forEach(t => t.querySelector('circle.dot').setAttribute('stroke', t.dataset.area === area ? '#d7c49a' : 'none'));
+  }
+
+  document.querySelectorAll('[data-count]').forEach(s => { const n = farms.filter(f => f.area === s.dataset.count).length; s.textContent = `${n} farm${n === 1 ? '' : 's'}`; });
+
+  [fArea, fAcres, fIndoor].forEach(el => el.addEventListener('change', render));
+  document.getElementById('searchForm').addEventListener('submit', e => { e.preventDefault(); render(); document.getElementById('farms').scrollIntoView(); });
+  document.getElementById('clearBtn').addEventListener('click', () => { fArea.value = 'all'; fAcres.value = '0'; fIndoor.checked = false; render(); });
+
+  function showArea(area) { fArea.value = area; fAcres.value = '0'; fIndoor.checked = false; render(); document.getElementById('farms').scrollIntoView(); }
+  document.querySelectorAll('#areas button').forEach(b => b.addEventListener('click', () => showArea(b.dataset.area)));
+
+  grid.addEventListener('click', e => {
+    const b = e.target.closest('.ask'); if (!b) return;
+    const m = document.getElementById('message');
+    m.value = `I'd like to know more about ${b.dataset.farm}.`;
+    document.getElementById('value').scrollIntoView();
+    setTimeout(() => m.focus({ preventScroll: true }), 400);
+  });
+
+  // Map: real coordinates, simple equirectangular projection around the two downtowns.
+  const C = { lat: 44.965, lon: -93.18 }, PX = 6, CX = 310, CY = 310; // 6px per mile
+  const xy = (lat, lon) => [CX + (lon - C.lon) * 48.8 * PX, CY - (lat - C.lat) * 69 * PX];
+  const towns = [
+    ["Medina", 45.035, -93.582, "west"], ["Independence", 45.025, -93.707, "west"], ["Delano", 45.042, -93.789, "west"], ["Corcoran", 45.095, -93.548, "west"],
+    ["Hugo", 45.160, -92.993, "northeast"], ["Forest Lake", 45.279, -92.985, "northeast"], ["Scandia", 45.254, -92.806, "northeast"], ["Stillwater", 45.056, -92.806, "northeast"], ["Lake Elmo", 44.996, -92.879, "northeast"], ["Afton", 44.903, -92.783, "northeast"], ["North Branch", 45.511, -92.980, "northeast"], ["Ham Lake", 45.250, -93.205, "northeast"],
+    ["Hastings", 44.743, -92.852, "south"], ["Elko New Market", 44.564, -93.327, "south"], ["Northfield", 44.458, -93.161, "south"], ["Cannon Falls", 44.507, -92.906, "south"], ["Jordan", 44.667, -93.627, "south"], ["Lakeville", 44.650, -93.243, "south"]
+  ];
+  const withFarms = new Set(farms.map(f => f.town));
+  const rivers = {
+    "Mississippi": [[45.33,-93.73],[45.20,-93.40],[45.12,-93.30],[45.03,-93.28],[44.98,-93.255],[44.90,-93.19],[44.93,-93.10],[44.94,-93.06],[44.87,-93.00],[44.76,-92.86],[44.70,-92.70],[44.58,-92.52]],
+    "St. Croix": [[45.60,-92.68],[45.40,-92.70],[45.20,-92.75],[45.06,-92.80],[44.93,-92.77],[44.80,-92.79],[44.75,-92.80]],
+    "Minnesota": [[44.52,-93.82],[44.66,-93.64],[44.79,-93.52],[44.81,-93.35],[44.86,-93.23],[44.89,-93.19]]
+  };
+  const svg = document.getElementById('map');
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, attrs, parent = svg) => { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); parent.appendChild(n); return n; };
+
+  // Township grid (6 miles = 36px)
+  const g = el('g', { stroke: '#2e4152', 'stroke-width': 1 });
+  for (let i = 0; i <= 620; i += 36) { el('line', { x1: i + 4, y1: 0, x2: i + 4, y2: 620 }, g); el('line', { x1: 0, y1: i + 4, x2: 620, y2: i + 4 }, g); }
+  // Rivers
+  for (const [name, pts] of Object.entries(rivers)) {
+    el('polyline', { points: pts.map(p => xy(...p).join(',')).join(' '), fill: 'none', stroke: '#4f7a99', 'stroke-width': 3, 'stroke-linejoin': 'round', 'stroke-linecap': 'round', opacity: .8 });
+  }
+  const rl = [["Mississippi", 45.16, -93.52], ["St. Croix", 45.36, -92.66], ["Minnesota R.", 44.70, -93.80]];
+  rl.forEach(([t, la, lo]) => { const [x, y] = xy(la, lo); el('text', { x, y, fill: '#6f98b5', 'font-family': 'Source Serif 4, Georgia, serif', 'font-style': 'italic', 'font-size': 13 }).textContent = t; });
+  // Rings
+  [15, 30, 45].forEach(mi => {
+    el('circle', { cx: CX, cy: CY, r: mi * PX, class: 'ring' });
+    el('text', { x: CX + 4, y: CY - mi * PX - 6, fill: '#d7c49a', 'font-family': 'Archivo, sans-serif', 'font-weight': 600, 'font-size': 12 }).textContent = `${mi} mi`;
+  });
+  // Downtowns
+  [["Minneapolis", 44.977, -93.265, 9, -9, 'start'], ["St. Paul", 44.954, -93.090, 0, 26, 'middle']].forEach(([t, la, lo, dx, dy, anchor]) => {
+    const [x, y] = xy(la, lo);
+    el('rect', { x: x - 5, y: y - 5, width: 10, height: 10, fill: '#f2f3ef' });
+    el('text', { x: x + dx, y: y + dy, 'text-anchor': anchor, class: 'city', fill: '#f2f3ef', 'font-family': 'Archivo, sans-serif', 'font-weight': 800, 'font-size': 14 }).textContent = t;
+  });
+  // Towns. Default label sits to the right; crowded west-metro towns get their own spot.
+  const left = new Set(["Jordan", "Elko New Market"]);
+  const labelAt = { Delano: ['end', -10, -6], Independence: ['middle', 0, 24], Medina: ['middle', 0, -14], Corcoran: ['middle', 0, -11] };
+  towns.forEach(([t, la, lo, area]) => {
+    const [x, y] = xy(la, lo), has = withFarms.has(t);
+    const grp = el('g', { class: 'town', tabindex: 0, role: 'button', 'data-area': area, 'aria-label': `${t}${has ? ', sample farm for sale' : ''}. Show ${area === 'northeast' ? 'north and east' : area === 'west' ? 'west metro' : 'south metro'} farms` });
+    el('circle', { class: 'dot', cx: x, cy: y, r: has ? 8 : 5, fill: has ? '#9b2a22' : '#93a0aa', 'stroke-width': 3 }, grp);
+    if (has) el('circle', { cx: x, cy: y, r: 2.5, fill: '#fff' }, grp);
+    const [anchor, dx, dy] = labelAt[t] || (left.has(t) ? ['end', -11, 4] : ['start', 11, 4]);
+    el('text', { x: x + dx, y: y + dy, 'text-anchor': anchor, class: has ? 'major' : 'minor', fill: has ? '#f2f3ef' : '#b9c2c9', 'font-family': 'Archivo, sans-serif', 'font-weight': has ? 700 : 500, 'font-size': has ? 14 : 12 }, grp).textContent = t;
+    grp.addEventListener('click', () => showArea(area));
+    grp.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showArea(area); } });
+  });
+  // North arrow
+  el('text', { x: 590, y: 30, fill: '#93a0aa', 'font-family': 'Archivo, sans-serif', 'font-weight': 700, 'font-size': 13, 'text-anchor': 'middle' }).textContent = 'N';
+  el('path', { d: 'M590 36 l-6 16 h12z', fill: '#93a0aa' });
+
+  render();
+
+  // Forms (demo: not connected)
+  document.getElementById('signupForm').addEventListener('submit', e => { e.preventDefault(); document.getElementById('signupMsg').classList.add('show'); });
+  document.getElementById('valueForm').addEventListener('submit', e => { e.preventDefault(); document.getElementById('valueMsg').classList.add('show'); });
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn'), links = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => { const open = links.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', open); });
+  links.addEventListener('click', e => { if (e.target.tagName === 'A') { links.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); } });
+</script>
+</body>
+</html>
